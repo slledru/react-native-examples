@@ -7,15 +7,35 @@
  */
 
 import React, {Component} from 'react';
-import { Button, CameraRoll, Image, ScrollView, View } from 'react-native';
+import {
+  Button, CameraRoll, Image, ScrollView,
+  View, Modal, TouchableHighlight, Dimensions
+} from 'react-native';
+
+const { width } = Dimensions.get('window')
 
 class App extends Component {
   constructor(props) {
     super(props)
-    this.state = { photos: [] }
+    this.state = {
+      modalVisible: false,
+      photos: [],
+      index: null
+    }
   }
 
-  _handleButtonPress = (event) => {
+  setIndex = (index) => {
+    if (index === this.state.index) {
+      index = null
+    }
+    this.setState({ index })
+  }
+
+  toggleModal = () => {
+    this.setState({ modalVisible: !this.state.modalVisible });
+  }
+
+  handleButtonPress = () => {
     const cameraRoll = new CameraRoll()
     console.log(CameraRoll)
     CameraRoll.getPhotos({
@@ -32,28 +52,50 @@ class App extends Component {
       })
   }
 
+  uploadToCloud = () => {
+    console.log('uploadToCloud')
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <Button title="Load Images" onPress={this._handleButtonPress} />
-        <ScrollView>
-          {
-            this.state.photos.map((p, i) => {
-              console.log(p)
-              return (
-                <Image
-                  key={i}
-                  style={{
-                    width: 300,
-                    height: 300,
-                    margin: 5
-                  }}
-                  source={{ uri: p.node.image.uri }}
-                />
-              )
-            })
-          }
-        </ScrollView>
+        <Button title="Load Images" onPress={() => { this.toggleModal(); this.handleButtonPress() }} />
+        <Modal
+          animationType={"slide"}
+          transparent={false}
+          visible={this.state.modalVisible}
+          onRequestClose={() => console.log('closed')}>
+          <View style={styles.modalContainer}>
+             <Button
+               title='Close'
+               onPress={() => { this.toggleModal(); this.uploadToCloud() }}
+             />
+            <ScrollView
+              contentContainerStyle={styles.scrollView}>
+              {
+                this.state.photos.map((p, i) => {
+                  return (
+                    <TouchableHighlight
+                      style={{opacity: i === this.state.index ? 0.5 : 1}}
+                      key={i}
+                      underlayColor='transparent'
+                      onPress={() => this.setIndex(i)}
+                    >
+                      <Image
+                        style={{
+                          width: width / 3 - 5,
+                          height: width / 3 - 5,
+                          margin: 2
+                        }}
+                        source={{uri: p.node.image.uri}}
+                      />
+                    </TouchableHighlight>
+                  )
+                })
+              }
+            </ScrollView>
+          </View>
+        </Modal>
       </View>
     );
   }
@@ -63,10 +105,16 @@ const styles = {
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-    marginTop: 100
-  }
+    alignItems: 'center'
+  },
+  modalContainer: {
+    paddingTop: 20,
+    flex: 1
+  },
+  scrollView: {
+    flexWrap: 'wrap',
+    flexDirection: 'row'
+  },
 }
 
 export default App
