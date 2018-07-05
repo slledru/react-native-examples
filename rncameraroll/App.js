@@ -19,11 +19,11 @@ class App extends Component {
     const cameraRoll = new CameraRoll()
     console.log(CameraRoll)
     CameraRoll.getPhotos({
-      first: 20,
+      groupTypes: 'All',
+      first: 100,
       assetType: 'Photos',
     })
       .then((r) => {
-        console.log('r', r)
         this.setState({ photos: r.edges });
       })
       .catch((err) => {
@@ -37,18 +37,22 @@ class App extends Component {
       <View style={styles.container}>
         <Button title="Load Images" onPress={this._handleButtonPress} />
         <ScrollView>
-          {this.state.photos.map((p, i) => {
-          return (
-            <Image
-              key={i}
-              style={{
-                width: 300,
-                height: 100,
-              }}
-              source={{ uri: p.node.image.uri }}
-            />
-          );
-        })}
+          {
+            this.state.photos.map((p, i) => {
+              console.log(p)
+              return (
+                <Image
+                  key={i}
+                  style={{
+                    width: 300,
+                    height: 300,
+                    margin: 5
+                  }}
+                  source={{ uri: p.node.image.uri }}
+                />
+              )
+            })
+          }
         </ScrollView>
       </View>
     );
