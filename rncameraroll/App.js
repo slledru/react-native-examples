@@ -7,43 +7,62 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import { Button, CameraRoll, Image, ScrollView, View } from 'react-native';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = { photos: [] }
+  }
 
-type Props = {};
-export default class App extends Component<Props> {
+  _handleButtonPress = (event) => {
+    const cameraRoll = new CameraRoll()
+    console.log(CameraRoll)
+    CameraRoll.getPhotos({
+      first: 20,
+      assetType: 'Photos',
+    })
+      .then((r) => {
+        console.log('r', r)
+        this.setState({ photos: r.edges });
+      })
+      .catch((err) => {
+        console.log('err', err)
+          //Error Loading Images
+      })
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
+        <Button title="Load Images" onPress={this._handleButtonPress} />
+        <ScrollView>
+          {this.state.photos.map((p, i) => {
+          return (
+            <Image
+              key={i}
+              style={{
+                width: 300,
+                height: 100,
+              }}
+              source={{ uri: p.node.image.uri }}
+            />
+          );
+        })}
+        </ScrollView>
       </View>
     );
   }
 }
 
-const styles = StyleSheet.create({
+const styles = {
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+    marginTop: 100
+  }
+}
+
+export default App
