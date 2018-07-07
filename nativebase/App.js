@@ -17,7 +17,7 @@ export default class App extends Component {
         <ImageBackground
           source={ backgroundImage }
           style={{ width: '100%', height: '100%' }}>
-          <Header style={{ height: 62, width: width, backgroundColor: 'transparent', marginTop: 0, marginBottom: 1, paddingLeft: 0, paddingRight: 0, borderBottomColor: '#FFF', borderBottomWidth: 1 }}>
+          <Header style={{ height: 62, width: width, backgroundColor: 'transparent', marginTop: 0, marginBottom: 1, paddingLeft: 0, paddingRight: 0, borderBottomColor: '#FFF', borderBottomWidth: 1, zIndex: 100 }}>
             <Left/>
             <Body >
               <Title style={{ marginTop: 15 }}>
