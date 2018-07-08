@@ -18,11 +18,11 @@ export default class App extends Component {
         <ImageBackground
           source={ backgroundImage }
           style={{ width: '100%', height: '100%' }}>
-          <Header style={{ height: 62, width: width, backgroundColor: 'transparent', marginTop: 0, marginBottom: 3, paddingLeft: 0, paddingRight: 0, borderBottomColor: '#FFF', borderBottomWidth: 3, zIndex: 100 }}>
+          <Header style={{ height: 62, width: width, backgroundColor: 'transparent', marginTop: 0, marginBottom: 2, paddingLeft: 0, paddingRight: 0, borderBottomColor: '#FFF', borderBottomWidth: 2, zIndex: 100 }}>
             <Left/>
             <Body >
-              <Title style={{ marginTop: 15 }}>
-                <Thumbnail square style={{ width: 60, height: 60 }}
+              <Title style={{ marginTop: 18 }}>
+                <Thumbnail square style={{ width: 55, height: 55 }}
                   source={ appIconImage } />
               </Title>
             </Body>
