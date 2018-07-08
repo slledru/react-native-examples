@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
+import { Dimensions } from 'react-native'
 import { Header, Left, Body, Title, Thumbnail, Right } from 'native-base'
-const appIconImage = require('../assets/lets-go-icon.png')
+const appIconImage = require('../../assets/lets-go-icon.png')
+
+const { width } = Dimensions.get('window')
 
 class HeaderMenu extends Component {
   render() {
