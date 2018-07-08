@@ -33,19 +33,24 @@ export default class App extends Component {
           <Footer style={{ height: 70, backgroundColor: 'transparent' }}>
             <FooterTab>
               <Button>
-                <Thumbnail round source={{uri: 'https://res.cloudinary.com/drf6ttx34/image/upload/v1530996064/App%20Icons/Home_Icon.png'}} />
+                <Thumbnail style={{ width: 55, height: 55 }}
+                  source={{uri: 'https://res.cloudinary.com/drf6ttx34/image/upload/v1530996064/App%20Icons/Home_Icon.png'}} />
               </Button>
               <Button>
-                <Thumbnail round source={{uri: 'https://res.cloudinary.com/drf6ttx34/image/upload/v1530996065/App%20Icons/Add_Event_Icon.png'}} />
+                <Thumbnail style={{ width: 55, height: 55 }}
+                  source={{uri: 'https://res.cloudinary.com/drf6ttx34/image/upload/v1530996065/App%20Icons/Add_Event_Icon.png'}} />
               </Button>
               <Button>
-                <Thumbnail round source={{uri: 'https://res.cloudinary.com/drf6ttx34/image/upload/v1530996063/App%20Icons/My_Events_Icon.png'}} />
+                <Thumbnail style={{ width: 55, height: 55 }}
+                  source={{uri: 'https://res.cloudinary.com/drf6ttx34/image/upload/v1530996063/App%20Icons/My_Events_Icon.png'}} />
               </Button>
               <Button>
-                <Thumbnail round source={{uri: 'https://res.cloudinary.com/drf6ttx34/image/upload/v1530996065/App%20Icons/My_Messages_Icon.png'}} />
+                <Thumbnail style={{ width: 55, height: 55 }}
+                  source={{uri: 'https://res.cloudinary.com/drf6ttx34/image/upload/v1530996065/App%20Icons/My_Messages_Icon.png'}} />
               </Button>
               <Button>
-                <Thumbnail round source={{uri: 'https://res.cloudinary.com/drf6ttx34/image/upload/v1530996065/App%20Icons/My_Profile_Icon.png'}} />
+                <Thumbnail style={{ width: 55, height: 55 }}
+                  source={{uri: 'https://res.cloudinary.com/drf6ttx34/image/upload/v1530996065/App%20Icons/My_Profile_Icon.png'}} />
               </Button>
             </FooterTab>
           </Footer>
