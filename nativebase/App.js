@@ -9,6 +9,7 @@ import {
 const { width } = Dimensions.get('window')
 
 const backgroundImage = require('./assets/1_a_base_02.png')
+const appIconImage = require('./assets/lets-go-icon.png')
 
 export default class App extends Component {
   render() {
@@ -17,12 +18,12 @@ export default class App extends Component {
         <ImageBackground
           source={ backgroundImage }
           style={{ width: '100%', height: '100%' }}>
-          <Header style={{ height: 62, width: width, backgroundColor: 'transparent', marginTop: 0, marginBottom: 1, paddingLeft: 0, paddingRight: 0, borderBottomColor: '#FFF', borderBottomWidth: 1, zIndex: 100 }}>
+          <Header style={{ height: 62, width: width, backgroundColor: 'transparent', marginTop: 0, marginBottom: 3, paddingLeft: 0, paddingRight: 0, borderBottomColor: '#FFF', borderBottomWidth: 3, zIndex: 100 }}>
             <Left/>
             <Body >
               <Title style={{ marginTop: 15 }}>
-                <Thumbnail square style={{ width: 60, height: 60, borderWidth: 1, borderRadius: 5, borderColor: '#FFF' }}
-                  source={{uri: 'https://res.cloudinary.com/drf6ttx34/image/upload/v1530995250/App%20Icons/1024x1024_opt3.png'}} />
+                <Thumbnail square style={{ width: 60, height: 60 }}
+                  source={ appIconImage } />
               </Title>
             </Body>
             <Right />
